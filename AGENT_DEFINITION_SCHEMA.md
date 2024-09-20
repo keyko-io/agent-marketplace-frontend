@@ -193,13 +193,11 @@ This section defines the processing details of the agent, including the platform
 
 The `requirements` object specifies the platform, version, and libraries required to run the agent. This is essential for configuring the backend environment.
 
-| Field        | Type        | Description                                                                              | Required | Example                                   |
-|--------------|-------------|------------------------------------------------------------------------------------------|----------|-------------------------------------------|
+| Field        | Type        | Description                                                                               | Required | Example                                   |
+|--------------|-------------|-------------------------------------------------------------------------------------------|----------|-------------------------------------------|
 | `platform`   | `string`    | The programming language or platform the agent uses (e.g., `"Python"`, `"Node.js"`).      | Yes      | `"Python"`                                |
 | `version`    | `string`    | The specific version of the platform required.                                            | Yes      | `"3.6"`                                   |
-| `libraries`  | `array`
-
-     | List of required libraries, including their names and versions.                           | No       | `[{"name": "numpy", "version": "1.18.1"}]` |
+| `libraries`  | `array`      | List of required libraries, including their names and versions.                          | No       | `[{"name": "numpy", "version": "1.18.1"}]` |
 
 ---
 
@@ -241,6 +239,7 @@ The `requirements` object specifies the platform, version, and libraries require
       "type": "string",
       "description": "User's username",
       "required": true,
+      "multiple": false,
       "validation": {
         "minLength": 5,
         "maxLength": 20,
@@ -252,6 +251,7 @@ The `requirements` object specifies the platform, version, and libraries require
       "type": "file",
       "description": "Upload a document",
       "required": true,
+      "multiple": false,
       "validation": {
         "maxSize": 5000000,
         "minSize": 1000
@@ -262,6 +262,7 @@ The `requirements` object specifies the platform, version, and libraries require
       "type": "image",
       "description": "Upload a profile picture",
       "required": true,
+      "multiple": false,
       "validation": {
         "width": 100,
         "height": 100,
@@ -304,7 +305,7 @@ The `requirements` object specifies the platform, version, and libraries require
         }
       ]
     },
-    "async": true
+    "async": false
   }
 }
 ```
