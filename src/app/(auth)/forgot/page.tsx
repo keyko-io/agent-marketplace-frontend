@@ -23,7 +23,7 @@ export default function ForgotPasswordPage() {
 
   return (
     <div className="min-h-screen bg-gray-900 flex items-center justify-center">
-      <Card className="w-[400px] bg-gray-800 text-gray-100 border-0 rounded-none">
+      <Card className="w-[400px] text-gray-100">
         <CardHeader>
           <CardTitle className="text-2xl font-bold">
             Forgot your password?
@@ -53,10 +53,7 @@ export default function ForgotPasswordPage() {
                   required
                 />
               </div>
-              <Button
-                type="submit"
-                className="w-full bg-purple-600 hover:bg-purple-700 text-white"
-              >
+              <Button type="submit" className="w-full">
                 Send Recovery Instructions
               </Button>
             </div>

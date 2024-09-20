@@ -13,6 +13,7 @@ import { Check, Zap, Sliders } from "lucide-react"
 import CategoryCard from "@/components/category-card"
 import FeaturedAgentCard from "@/components/featured-agent-card"
 import Testimonials from "@/components/testimonials"
+import { Badge } from "@/components/ui/badge"
 
 const categories = [
   {

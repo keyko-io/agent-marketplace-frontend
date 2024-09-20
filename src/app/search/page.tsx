@@ -1,17 +1,19 @@
 "use client"
 
 import { useState } from "react"
-import Image from "next/image"
-import { Search, Star, Heart } from "lucide-react"
+import { Search } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination"
+
 import {
   Select,
   SelectContent,
@@ -19,7 +21,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { Badge } from "@/components/ui/badge"
 import AgentCard from "@/components/agent-card"
 
 const agents = [
@@ -162,27 +163,27 @@ export default function SearchPage() {
           ))}
         </div>
 
-        <div className="flex justify-center items-center space-x-2">
-          <Button variant="outline" size="icon" className="text-gray-400">
-            &lt;
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            className="bg-gray-700 text-white"
-          >
-            1
-          </Button>
-          <Button variant="outline" size="sm" className="text-gray-400">
-            2
-          </Button>
-          <Button variant="outline" size="sm" className="text-gray-400">
-            3
-          </Button>
-          <Button variant="outline" size="icon" className="text-gray-400">
-            &gt;
-          </Button>
-        </div>
+        <Pagination>
+          <PaginationContent>
+            <PaginationItem>
+              <PaginationPrevious href="#" />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="#" isActive>
+                1
+              </PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="#">2</PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="#">3</PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationNext href="#" />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
       </main>
     </div>
   )

@@ -124,9 +124,7 @@ export default function DashboardPage() {
                       </p>
                     </div>
                   </div>
-                  <Button className="bg-purple-600 hover:bg-purple-700">
-                    Launch
-                  </Button>
+                  <Button>Launch</Button>
                 </div>
               ))}
               <Link

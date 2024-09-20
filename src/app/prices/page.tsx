@@ -7,7 +7,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
+
 import { Check } from "lucide-react"
 import Testimonials from "@/components/testimonials"
 
@@ -62,7 +62,7 @@ export default function PricingPage() {
           {pricingPlans.map((plan, index) => (
             <Card
               key={index}
-              className={`bg-gray-800 border-gray-700 overflow-hidden ${
+              className={`bg-gray-800 border-gray-700 overflow-hidden text-white ${
                 plan.highlighted ? "border-purple-500 border-2" : ""
               }`}
             >
@@ -104,11 +104,11 @@ export default function PricingPage() {
           ))}
         </div>
 
-        <div className="mb-16">
+        <div className="mb-24">
           <div className="flex flex-col md:flex-row items-center gap-8">
             <div className="md:w-1/2">
               <Image
-                src="place.svg"
+                src="/price.png"
                 alt="Office space illustration"
                 width={500}
                 height={500}

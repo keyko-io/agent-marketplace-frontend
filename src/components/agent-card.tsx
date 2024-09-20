@@ -1,10 +1,9 @@
 "use client"
 
-import { useState } from "react"
 import Image from "next/image"
-import { Search, Star, Heart } from "lucide-react"
+import { Star, Heart } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+
 import {
   Card,
   CardContent,
@@ -12,13 +11,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
+
 import { Badge } from "@/components/ui/badge"
 
 interface Props {
@@ -32,7 +25,7 @@ interface Props {
 
 const AgentCard = ({ id, name, description, rating, reviews, tags }: Props) => {
   return (
-    <Card key={id} className="bg-gray-800 border-gray-700">
+    <Card key={id}>
       <CardHeader className="p-0 pb-6">
         <Image
           src="/place.svg"
@@ -61,9 +54,7 @@ const AgentCard = ({ id, name, description, rating, reviews, tags }: Props) => {
         </div>
         <div className="flex flex-wrap gap-2">
           {tags.map((tag) => (
-            <Badge key={tag} variant="secondary" className="bg-purple-300">
-              #{tag}
-            </Badge>
+            <Badge key={tag}>#{tag}</Badge>
           ))}
         </div>
       </CardContent>

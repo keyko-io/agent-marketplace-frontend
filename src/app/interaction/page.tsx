@@ -99,13 +99,7 @@ export default function ImageMasterAIPage() {
           <p className="text-gray-400 mb-4">{agentData.longDescription}</p>
           <div className="flex flex-wrap gap-2 mb-4">
             {agentData.tags.map((tag) => (
-              <Badge
-                key={tag}
-                variant="secondary"
-                className="bg-purple-400 hover:bg-purple-500 text-white"
-              >
-                #{tag}
-              </Badge>
+              <Badge key={tag}>#{tag}</Badge>
             ))}
           </div>
           <div className="flex items-center mb-4">
@@ -204,10 +198,7 @@ export default function ImageMasterAIPage() {
             </div>
           </CardContent>
           <CardFooter>
-            <Button
-              className="w-full bg-purple-600 hover:bg-purple-700 text-white"
-              onClick={handleGenerateImage}
-            >
+            <Button className="w-full" onClick={handleGenerateImage}>
               Generate Image
             </Button>
           </CardFooter>

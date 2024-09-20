@@ -26,7 +26,7 @@ export default function NotFoundPage() {
           </div>
           <div className="md:w-1/2">
             <Image
-              src="place.svg"
+              src="/error.png"
               alt="AI agents on break"
               width={500}
               height={500}
@@ -48,7 +48,7 @@ export default function NotFoundPage() {
             </CardContent>
             <CardFooter>
               <Link href="/">
-                <Button className="w-full bg-purple-600 hover:bg-purple-700">
+                <Button className="w-full">
                   Back to Home
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -80,7 +80,7 @@ export default function NotFoundPage() {
             </CardContent>
             <CardFooter>
               <Link href="/dashboard">
-                <Button className="w-full bg-purple-600 hover:bg-purple-700">
+                <Button className="w-full">
                   Go to Dashboard
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -112,7 +112,7 @@ export default function NotFoundPage() {
             </CardContent>
             <CardFooter>
               <Link href="/agents">
-                <Button className="w-full bg-purple-600 hover:bg-purple-700">
+                <Button className="w-full">
                   View Agents
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

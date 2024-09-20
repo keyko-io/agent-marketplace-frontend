@@ -63,7 +63,7 @@ export default function LinguAgentPage() {
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center mb-8">
           <Image
-            src="/placeholder.svg?height=80&width=80"
+            src="/agent.png"
             alt={agentData.name}
             width={80}
             height={80}
@@ -79,9 +79,7 @@ export default function LinguAgentPage() {
 
         <div className="flex flex-wrap gap-2 mb-4">
           {agentData.tags.map((tag) => (
-            <Badge key={tag} variant="secondary" className="bg-gray-700">
-              {tag}
-            </Badge>
+            <Badge key={tag}>{tag}</Badge>
           ))}
         </div>
 
@@ -185,10 +183,7 @@ export default function LinguAgentPage() {
                   rows={5}
                 />
               </div>
-              <Button
-                type="submit"
-                className="w-full bg-purple-600 hover:bg-purple-700"
-              >
+              <Button type="submit" className="w-full">
                 Submit Review
               </Button>
             </form>

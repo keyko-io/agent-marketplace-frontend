@@ -9,7 +9,7 @@ interface Props {
 
 const CategoryCard = ({ name, category }: Props) => {
   return (
-    <Card key={name} className="bg-gray-700 rounded-none border-0">
+    <Card key={name}>
       <CardHeader className="text-white">
         <p className="text-sm">{category}</p>
         <CardTitle className="text-lg">{name}</CardTitle>

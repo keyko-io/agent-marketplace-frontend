@@ -81,7 +81,7 @@ export default function LinguAgentPage() {
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       <main className="container mx-auto px-4 py-8">
-        <Card className="bg-gray-800 text-white border-0">
+        <Card className="bg-gray-800 text-white border-0 rounded-none">
           <CardContent className="p-6">
             <div className="flex flex-col md:flex-row gap-6">
               <div className="md:w-1/3">
@@ -97,23 +97,21 @@ export default function LinguAgentPage() {
                 <h1 className="text-3xl font-bold mb-2">{agentData.name}</h1>
                 <div className="flex items-center mb-2">
                   <StarRating rating={agentData.rating} />
-                  <span className="ml-2 text-sm text-gray-400">
+                  <span className="ml-2 text-sm text-primary">
                     {agentData.reviewCount} reviews
                   </span>
 
                   <div className="ml-auto">
                     <div className="mb-1">Tags:</div>
                     {agentData.tags.map((tag) => (
-                      <Badge key={tag} variant="outline" className="mr-2">
+                      <Badge key={tag} className="mr-2">
                         #{tag}
                       </Badge>
                     ))}
                   </div>
                 </div>
                 <div className="mb-4">
-                  <Badge variant="secondary" className="mr-2">
-                    {agentData.category}
-                  </Badge>
+                  <Badge className="mr-2">{agentData.category}</Badge>
                 </div>
                 <p className="mb-4 text-gray-300">{agentData.description}</p>
                 <h2 className="text-xl font-semibold mb-2">Key Features:</h2>
@@ -122,15 +120,13 @@ export default function LinguAgentPage() {
                     <li key={index}>{feature}</li>
                   ))}
                 </ul>
-                <Button className="w-full bg-purple-600 hover:bg-purple-700">
-                  Subscribe Now
-                </Button>
+                <Button className="w-full">Subscribe Now</Button>
               </div>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="mt-8 bg-gray-800 text-white border-0">
+        <Card className="mt-8 bg-gray-800 text-white border-0 rounded-sm">
           <CardHeader>
             <CardTitle>Agent Workflow</CardTitle>
           </CardHeader>
@@ -154,7 +150,7 @@ export default function LinguAgentPage() {
           </CardContent>
         </Card>
 
-        <Card className="mt-8 bg-gray-800 text-white border-0">
+        <Card className="mt-8 bg-gray-800 text-white border-0 rounded-sm">
           <CardHeader>
             <CardTitle>User Reviews</CardTitle>
           </CardHeader>
