@@ -68,6 +68,7 @@ An image is a special type of file and includes additional validation options su
   "type": "string",
   "description": "User's username",
   "required": true,
+  "multiple": false,
   "validation": {
     "minLength": 5,
     "maxLength": 20,
@@ -84,6 +85,7 @@ An image is a special type of file and includes additional validation options su
   "type": "file",
   "description": "Upload a document",
   "required": true,
+  "multiple": true,
   "validation": {
     "maxSize": 5000000,
     "minSize": 1000
@@ -99,6 +101,7 @@ An image is a special type of file and includes additional validation options su
   "type": "image",
   "description": "Upload a profile picture",
   "required": true,
+  "multiple": false,
   "validation": {
     "width": 100,
     "height": 100,
@@ -118,8 +121,8 @@ The output section describes what the agent returns after processing. Outputs ca
 
 ### **Fields:**
 
-| Field        | Type        | Description                                                                 | Required | Example                                   |
-|--------------|-------------|-----------------------------------------------------------------------------|----------|-------------------------------------------|
+| Field        | Type        | Description                                                                  | Required | Example                                   |
+|--------------|-------------|------------------------------------------------------------------------------|----------|-------------------------------------------|
 | `name`       | `string`    | The name of the output.                                                      | Yes      | `"output1"`                               |
 | `type`       | `string`    | Type of output (`string`, `file`, `image`).                                  | Yes      | `"file"`                                  |
 | `description`| `string`    | A brief description of what the output represents.                           | Yes      | `"Generated image file"`                  |
@@ -133,10 +136,10 @@ For `file` or `image` outputs, the `fileOptions` field provides additional optio
 
 | Field          | Type        | Description                                                                                   | Required | Example                                   |
 |----------------|-------------|-----------------------------------------------------------------------------------------------|----------|-------------------------------------------|
-| `accept`       | `array`     | List of acceptable file types/extensions (`.png`, `.jpg`, `.pdf`, etc.).                       | Yes      | `[".png", ".jpg"]`                        |
-| `multiple`     | `boolean`   | Whether multiple files can be generated as output.                                             | No       | `false`                                  |
-| `maxSize`      | `integer`   | Maximum file size (in bytes) for the generated file(s).                                        | No       | `2000000`                                |
-| `minSize`      | `integer`   | Minimum file size (in bytes) for the generated file(s).                                        | No       | `500`                                    |
+| `accept`       | `array`     | List of acceptable file types/extensions (`.png`, `.jpg`, `.pdf`, etc.).                      | Yes      | `[".png", ".jpg"]`                       |
+| `multiple`     | `boolean`   | Whether multiple files can be generated as output.                                            | No       | `false`                                  |
+| `maxSize`      | `integer`   | Maximum file size (in bytes) for the generated file(s).                                       | No       | `2000000`                                |
+| `minSize`      | `integer`   | Minimum file size (in bytes) for the generated file(s).                                       | No       | `500`                                    |
 
 ---
 
@@ -177,12 +180,12 @@ This section defines the processing details of the agent, including the platform
 
 ### **Fields:**
 
-| Field        | Type        | Description                                                                            | Required | Example                                   |
-|--------------|-------------|----------------------------------------------------------------------------------------|----------|-------------------------------------------|
-| `description`| `string`    | A brief description of the processing task.                                             | Yes      | `"Image generation with specific libraries"`|
-| `type`       | `string`    | The type of task (e.g., `Image Generation`, `Data Processing`).                         | Yes      | `"Image Generation"`                      |
-| `requirements`| `object`   | Information about the platform, version, and dependencies required to execute the agent.| Yes      | `{ "platform": "Python", "version": "3.6" }` |
-| `async`      | `boolean`   | Whether the execution is asynchronous.                                                  | No       | `true`                                    |
+| Field        | Type        | Description                                                                             | Required | Permitted values                          | Example                                   |
+|--------------|-------------|-----------------------------------------------------------------------------------------|----------|------------------------------------------ |-------------------------------------------|
+| `description`| `string`    | A brief description of the processing task.                                             | Yes      |                                           |`"Image generation with specific libraries"`|
+| `type`       | `string`    | The type of task (e.g., `Image Generation`, `Text Generation`).                         | Yes      | `"Image Generation" \| "Text Generation"` |`"Image Generation"`                      |
+| `requirements`| `object`   | Information about the platform, version, and dependencies required to execute the agent.| Yes      |                                           |`{ "platform": "Python", "version": "3.6" }` |
+| `async`      | `boolean`   | Whether the execution is asynchronous.                                                  | No       |                                           |`true`                                    |
 
 ---
 
