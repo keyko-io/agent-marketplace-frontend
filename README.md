@@ -24,6 +24,7 @@ The frontend is built with the following technologies:
 - **TypeScript**: Ensures type safety and helps with more reliable code.
 - **Next/font**: Automatically optimizes and loads fonts.
 - **Shadcn**: CSS-in-JS library for styling components.
+- **Tailwind**: Utility-first CSS framework for styling components.
 
 ---
 
