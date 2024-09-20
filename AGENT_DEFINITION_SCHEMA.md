@@ -40,21 +40,21 @@ The `validation` object contains different rules depending on the type of input.
 
 #### **For `file` inputs:**
 
-| Field         | Type       | Description                                                                              | Required | Example                |
-|---------------|------------|------------------------------------------------------------------------------------------|----------|------------------------|
-| `maxSize`     | `integer`  | Maximum file size in bytes.                                                              | No       | `1000000`              |
-| `minSize`     | `integer`  | Minimum file size in bytes.                                                              | No       | `1000`                 |
+| Field         | Type       | Description                                                                  | Required | Example                |
+|---------------|------------|------------------------------------------------------------------------------|----------|------------------------|
+| `maxSize`     | `integer`  | Maximum file size in bytes.                                                  | No       | `1000000`              |
+| `minSize`     | `integer`  | Minimum file size in bytes.                                                  | No       | `1000`                 |
 
 #### **For `image` inputs:**
 
 An image is a special type of file and includes additional validation options such as `width` and `height`.
 
-| Field         | Type       | Description                                                                              | Required | Example                |
-|---------------|------------|------------------------------------------------------------------------------------------|----------|------------------------|
-| `width`       | `integer`  | Expected width of the image in pixels.                                                   | No       | `100`                  |
-| `height`      | `integer`  | Expected height of the image in pixels.                                                  | No       | `100`                  |
-| `maxSize`     | `integer`  | Maximum size of the image file in bytes.                                                 | No       | `1000000`              |
-| `minSize`     | `integer`  | Minimum size of the image file in bytes.                                                 | No       | `1000`                 |
+| Field         | Type       | Description                                                                  | Required | Example                |
+|---------------|------------|------------------------------------------------------------------------------|----------|------------------------|
+| `width`       | `integer`  | Expected width of the image in pixels.                                       | No       | `100`                  |
+| `height`      | `integer`  | Expected height of the image in pixels.                                      | No       | `100`                  |
+| `maxSize`     | `integer`  | Maximum size of the image file in bytes.                                     | No       | `1000000`              |
+| `minSize`     | `integer`  | Minimum size of the image file in bytes.                                     | No       | `1000`                 |
 
 ---
 
@@ -134,12 +134,12 @@ The output section describes what the agent returns after processing. Outputs ca
 
 For `file` or `image` outputs, the `fileOptions` field provides additional options.
 
-| Field          | Type        | Description                                                                                   | Required | Example                                   |
-|----------------|-------------|-----------------------------------------------------------------------------------------------|----------|-------------------------------------------|
-| `accept`       | `array`     | List of acceptable file types/extensions (`.png`, `.jpg`, `.pdf`, etc.).                      | Yes      | `[".png", ".jpg"]`                        |
-| `multiple`     | `boolean`   | Whether multiple files can be generated as output.                                            | No       | `false`                                   |
-| `maxSize`      | `integer`   | Maximum file size (in bytes) for the generated file(s).                                       | No       | `2000000`                                 |
-| `minSize`      | `integer`   | Minimum file size (in bytes) for the generated file(s).                                       | No       | `500`                                     |
+| Field          | Type        | Description                                                                       | Required | Example                                   |
+|----------------|-------------|-----------------------------------------------------------------------------------|----------|-------------------------------------------|
+| `accept`       | `array`     | List of acceptable file types/extensions (`.png`, `.jpg`, `.pdf`, etc.).          | Yes      | `[".png", ".jpg"]`                        |
+| `multiple`     | `boolean`   | Whether multiple files can be generated as output.                                | No       | `false`                                   |
+| `maxSize`      | `integer`   | Maximum file size (in bytes) for the generated file(s).                           | No       | `2000000`                                 |
+| `minSize`      | `integer`   | Minimum file size (in bytes) for the generated file(s).                           | No       | `500`                                     |
 
 ---
 
@@ -236,7 +236,7 @@ The `requirements` object specifies the platform, version, and libraries require
   "inputs": [
     {
       "name": "username",
-      "type": "string",
+      "type": "text",
       "description": "User's username",
       "required": true,
       "multiple": false,
@@ -274,7 +274,7 @@ The `requirements` object specifies the platform, version, and libraries require
   "outputs": [
     {
       "name": "translatedText",
-      "type": "string",
+      "type": "text",
       "description": "Translated text result"
     },
     {
