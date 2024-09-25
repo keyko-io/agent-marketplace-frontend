@@ -1,22 +1,15 @@
 import Image from "next/image"
 import Link from "next/link"
 import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import {
-  Github,
-  Linkedin,
-  Twitter,
-  Star,
-  Heart,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react"
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination"
+
+import { Github, Linkedin, Twitter } from "lucide-react"
 import AgentCard from "@/components/agent-card"
 
 const builderData = {
@@ -125,33 +118,30 @@ export default function BuilderPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           {agents.map((agent) => (
-            <AgentCard {...agent} />
+            <AgentCard {...agent} key={agent.id} />
           ))}
         </div>
-        <div className="flex justify-center items-center space-x-1">
-          <Button variant="outline" size="icon" className="w-8 h-8 p-0">
-            <ChevronLeft className="h-4 w-4" />
-            <span className="sr-only">Previous page</span>
-          </Button>
-          {[1, 2, 3].map((page) => (
-            <Button
-              key={page}
-              variant={page === 1 ? "default" : "outline"}
-              size="icon"
-              className={`w-8 h-8 p-0 ${
-                page === 1
-                  ? "bg-purple-600 hover:bg-purple-700"
-                  : "text-gray-400 hover:text-white"
-              }`}
-            >
-              {page}
-            </Button>
-          ))}
-          <Button variant="outline" size="icon" className="w-8 h-8 p-0">
-            <ChevronRight className="h-4 w-4" />
-            <span className="sr-only">Next page</span>
-          </Button>
-        </div>
+        <Pagination>
+          <PaginationContent>
+            <PaginationItem className="rounded-tl-md rounded-bl-md">
+              <PaginationPrevious href="#" />
+            </PaginationItem>
+            <PaginationItem className="border-r border-gray-700">
+              <PaginationLink href="#" isActive>
+                1
+              </PaginationLink>
+            </PaginationItem>
+            <PaginationItem className="border-r border-gray-700">
+              <PaginationLink href="#">2</PaginationLink>
+            </PaginationItem>
+            <PaginationItem className="border-r border-gray-700">
+              <PaginationLink href="#">3</PaginationLink>
+            </PaginationItem>
+            <PaginationItem className="rounded-tr-md rounded-br-md">
+              <PaginationNext href="#" />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
       </main>
     </div>
   )

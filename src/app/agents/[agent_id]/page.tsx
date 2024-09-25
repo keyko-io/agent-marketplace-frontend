@@ -1,9 +1,17 @@
 import Image from "next/image"
-import { Star, ChevronLeft, ChevronRight } from "lucide-react"
+import { Star } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination"
 
 const agentData = {
   name: "LinguAgent",
@@ -21,27 +29,6 @@ const agentData = {
     "Integration support for seamless workflow incorporation",
   ],
 }
-
-const workflowSteps = [
-  {
-    title: "User Inputs",
-    description:
-      "Users provide input data or instructions to the intelligent agent.",
-    icon: "📥",
-  },
-  {
-    title: "Agent Processes",
-    description:
-      "The intelligent agent follows predefined steps to analyze and manipulate the input data.",
-    icon: "⚙️",
-  },
-  {
-    title: "Agent Generates Output",
-    description:
-      "The intelligent agent produces results or performs actions based on the processed input data.",
-    icon: "📤",
-  },
-]
 
 const reviews = [
   {
@@ -132,20 +119,39 @@ export default function LinguAgentPage() {
           </CardHeader>
           <CardContent>
             <div className="relative">
-              {workflowSteps.map((step, index) => (
-                <div key={index} className="flex items-start mb-8 last:mb-0">
-                  <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-purple-600 text-white text-xl mr-4 z-10">
-                    {step.icon}
-                  </div>
-                  <div className="flex-grow">
-                    <h3 className="text-lg font-semibold">{step.title}</h3>
-                    <p className="text-gray-400">{step.description}</p>
-                  </div>
-                  {index < workflowSteps.length - 1 && (
-                    <div className="absolute left-4 top-8 bottom-0 w-0.5 bg-purple-600 -z-10" />
-                  )}
-                </div>
-              ))}
+              <svg
+                className="absolute left-3 top-0 h-full w-0.5"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <line
+                  x1="0"
+                  y1="0"
+                  x2="0"
+                  y2="100%"
+                  stroke="#374151"
+                  strokeWidth="2"
+                />
+              </svg>
+              <div className="space-y-6">
+                <WorkflowStep
+                  icon="⚪"
+                  title="User Inputs"
+                  description="Users provide input data or instructions to the intelligent agent."
+                  type="Input"
+                />
+                <WorkflowStep
+                  icon="⚪"
+                  title="Agent Processes"
+                  description="The intelligent agent follows predefined steps to analyze and manipulate the input data."
+                  type="Processing"
+                />
+                <WorkflowStep
+                  icon="⚪"
+                  title="Agent Generates Output"
+                  description="The intelligent agent produces results or performs actions based on the processed input data."
+                  type="Output"
+                />
+              </div>
             </div>
           </CardContent>
         </Card>
@@ -155,7 +161,7 @@ export default function LinguAgentPage() {
             <CardTitle>User Reviews</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="space-y-4">
+            <div className="space-y-4 mb-10">
               {reviews.map((review) => (
                 <div
                   key={review.id}
@@ -178,30 +184,57 @@ export default function LinguAgentPage() {
                 </div>
               ))}
             </div>
-            <div className="flex justify-center items-center space-x-2 mt-4">
-              <Button variant="outline" size="icon" className="text-gray-400">
-                <ChevronLeft className="h-4 w-4" />
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                className="bg-gray-700 text-white"
-              >
-                1
-              </Button>
-              <Button variant="outline" size="sm" className="text-gray-400">
-                2
-              </Button>
-              <Button variant="outline" size="sm" className="text-gray-400">
-                3
-              </Button>
-              <Button variant="outline" size="icon" className="text-gray-400">
-                <ChevronRight className="h-4 w-4" />
-              </Button>
-            </div>
+            <Pagination>
+              <PaginationContent>
+                <PaginationItem className="rounded-tl-md rounded-bl-md">
+                  <PaginationPrevious href="#" />
+                </PaginationItem>
+                <PaginationItem className="border-r border-gray-700">
+                  <PaginationLink href="#" isActive>
+                    1
+                  </PaginationLink>
+                </PaginationItem>
+                <PaginationItem className="border-r border-gray-700">
+                  <PaginationLink href="#">2</PaginationLink>
+                </PaginationItem>
+                <PaginationItem className="border-r border-gray-700">
+                  <PaginationLink href="#">3</PaginationLink>
+                </PaginationItem>
+                <PaginationItem className="rounded-tr-md rounded-br-md">
+                  <PaginationNext href="#" />
+                </PaginationItem>
+              </PaginationContent>
+            </Pagination>
           </CardContent>
         </Card>
       </main>
+    </div>
+  )
+}
+
+function WorkflowStep({
+  icon,
+  title,
+  description,
+  type,
+}: {
+  icon: string
+  title: string
+  description: string
+  type: string
+}) {
+  return (
+    <div className="flex items-start">
+      <div className="flex flex-col items-center mr-4">
+        <div className="w-6 h-6 bg-gray-700 rounded-full flex items-center justify-center text-sm z-10 relative">
+          {icon}
+        </div>
+      </div>
+      <div>
+        <div className="text-sm text-gray-400 mb-1">{type}</div>
+        <h3 className="text-lg font-semibold mb-2">{title}</h3>
+        <p className="text-gray-400 text-sm">{description}</p>
+      </div>
     </div>
   )
 }

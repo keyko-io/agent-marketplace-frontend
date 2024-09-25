@@ -29,6 +29,15 @@ import {
   Upload,
 } from "lucide-react"
 
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination"
+
 const agentData = {
   name: "ImageMaster AI",
   description: "Advanced Image Generation Agent",
@@ -80,7 +89,7 @@ export default function ImageMasterAIPage() {
   return (
     <div className="min-h-screen bg-gray-900 text-gray-300">
       <main className="container mx-auto px-4 py-8">
-        <div className="mb-8 bg-gray-800 px-8 py-6">
+        <div className="mb-8 bg-card px-8 py-6">
           <div className="flex items-center mb-4">
             <Image
               src={"/agent.png"}
@@ -125,7 +134,7 @@ export default function ImageMasterAIPage() {
           </Link>
         </div>
 
-        <Card className="bg-gray-800 border-gray-700 mb-8 rounded-none border-0">
+        <Card className="border-gray-700 mb-8 rounded-none border-0">
           <CardHeader>
             <CardTitle className="text-white">Execute Agent</CardTitle>
           </CardHeader>
@@ -205,7 +214,7 @@ export default function ImageMasterAIPage() {
         </Card>
 
         {!generatedImage && (
-          <Card className="bg-gray-800 border-gray-700 mb-8 rounded-none border-0">
+          <Card className="border-gray-700 mb-8 rounded-none border-0">
             <CardHeader>
               <CardTitle className="text-white">Generated Image</CardTitle>
             </CardHeader>
@@ -242,7 +251,7 @@ export default function ImageMasterAIPage() {
           </Card>
         )}
 
-        <Card className="bg-gray-800 border-gray-700 rounded-none border-0">
+        <Card className="border-gray-700 rounded-none border-0">
           <CardHeader className="flex flex-row items-center justify-between">
             <CardTitle className="text-white">Generation History</CardTitle>
             <Link
@@ -252,7 +261,7 @@ export default function ImageMasterAIPage() {
               View all
             </Link>
           </CardHeader>
-          <CardContent>
+          <CardContent className="bg-gray-700 mx-6">
             {generationHistory.map((item) => (
               <div
                 key={item.id}
@@ -277,37 +286,28 @@ export default function ImageMasterAIPage() {
               </div>
             ))}
           </CardContent>
-          <CardFooter>
-            <div className="flex justify-center items-center space-x-2 w-full">
-              <Button
-                variant="outline"
-                size="icon"
-                className="w-8 h-8 p-0 text-gray-400 border-gray-600"
-              >
-                &lt;
-              </Button>
-              {[1, 2, 3].map((page) => (
-                <Button
-                  key={page}
-                  variant={page === 1 ? "default" : "outline"}
-                  size="icon"
-                  className={`w-8 h-8 p-0 ${
-                    page === 1
-                      ? "bg-purple-600 hover:bg-purple-700 text-white"
-                      : "text-gray-400 hover:text-white border-gray-600"
-                  }`}
-                >
-                  {page}
-                </Button>
-              ))}
-              <Button
-                variant="outline"
-                size="icon"
-                className="w-8 h-8 p-0 text-gray-400 border-gray-600"
-              >
-                &gt;
-              </Button>
-            </div>
+          <CardFooter className="mt-6">
+            <Pagination>
+              <PaginationContent>
+                <PaginationItem className="rounded-tl-md rounded-bl-md">
+                  <PaginationPrevious href="#" />
+                </PaginationItem>
+                <PaginationItem className="border-r border-gray-700">
+                  <PaginationLink href="#" isActive>
+                    1
+                  </PaginationLink>
+                </PaginationItem>
+                <PaginationItem className="border-r border-gray-700">
+                  <PaginationLink href="#">2</PaginationLink>
+                </PaginationItem>
+                <PaginationItem className="border-r border-gray-700">
+                  <PaginationLink href="#">3</PaginationLink>
+                </PaginationItem>
+                <PaginationItem className="rounded-tr-md rounded-br-md">
+                  <PaginationNext href="#" />
+                </PaginationItem>
+              </PaginationContent>
+            </Pagination>
           </CardFooter>
         </Card>
       </main>

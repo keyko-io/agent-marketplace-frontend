@@ -9,7 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { Check, Zap, Sliders } from "lucide-react"
+import { Check, Zap, Sliders, ArrowRight } from "lucide-react"
 import CategoryCard from "@/components/category-card"
 import FeaturedAgentCard from "@/components/featured-agent-card"
 import Testimonials from "@/components/testimonials"
@@ -80,14 +80,14 @@ export default function HomePage() {
             <div className="absolute inset-0 bg-black opacity-50"></div>{" "}
           </div>
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-5xl font-bold mb-4">
+            <h1 className="text-5xl font-bold mb-4 tracking-tighter">
               Welcome to AgentMarketplace.ai
             </h1>
             <p className="text-xl mb-8 text-gray-400">
               Discover and subscribe to AI agents that boost your productivity
             </p>
-            <Button className="rounded-xl" size="lg">
-              Get Started →
+            <Button className="rounded-xl font-semibold" size="lg">
+              Get Started <ArrowRight className="ml-2" size={18} />
             </Button>
           </div>
         </section>

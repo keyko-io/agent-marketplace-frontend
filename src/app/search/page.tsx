@@ -7,7 +7,6 @@ import { Input } from "@/components/ui/input"
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationNext,
@@ -159,27 +158,27 @@ export default function SearchPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           {agents.map((agent) => (
-            <AgentCard {...agent} />
+            <AgentCard {...agent} key={agent.id} />
           ))}
         </div>
 
         <Pagination>
           <PaginationContent>
-            <PaginationItem>
+            <PaginationItem className="rounded-tl-md rounded-bl-md">
               <PaginationPrevious href="#" />
             </PaginationItem>
-            <PaginationItem>
+            <PaginationItem className="border-r border-gray-700">
               <PaginationLink href="#" isActive>
                 1
               </PaginationLink>
             </PaginationItem>
-            <PaginationItem>
+            <PaginationItem className="border-r border-gray-700">
               <PaginationLink href="#">2</PaginationLink>
             </PaginationItem>
-            <PaginationItem>
+            <PaginationItem className="border-r border-gray-700">
               <PaginationLink href="#">3</PaginationLink>
             </PaginationItem>
-            <PaginationItem>
+            <PaginationItem className="rounded-tr-md rounded-br-md">
               <PaginationNext href="#" />
             </PaginationItem>
           </PaginationContent>

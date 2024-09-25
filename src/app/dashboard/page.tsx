@@ -140,8 +140,8 @@ export default function DashboardPage() {
             <CardHeader>
               <CardTitle className="text-white">Notifications</CardTitle>
             </CardHeader>
-            <CardContent>
-              <ul className="space-y-4">
+            <CardContent className="flex flex-col">
+              <ul className="space-y-4 flex-1">
                 {notifications.map((notification, index) => (
                   <li key={index}>
                     <p className="text-gray-200">{notification.message}</p>
@@ -151,7 +151,7 @@ export default function DashboardPage() {
               </ul>
               <Link
                 href="/notifications"
-                className="text-sm text-gray-200 hover:text-gray-100 mt-4 block"
+                className="text-sm text-gray-200 hover:text-gray-100 block mt-8"
               >
                 View all notifications
               </Link>
@@ -165,7 +165,7 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             {recentInteractions.map((interaction, index) => (
-              <div key={index} className="mb-4 last:mb-0 bg-gray-600 p-2 px-4">
+              <div key={index} className="mb-2 last:mb-0 bg-gray-600 p-2 px-4">
                 <p className="text-sm text-gray-400">{interaction.date}</p>
                 <p className="text-sm text-gray-400">
                   {interaction.description}

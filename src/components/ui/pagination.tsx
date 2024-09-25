@@ -12,7 +12,10 @@ const Pagination = ({ className, ...props }: React.ComponentProps<"nav">) => (
   <nav
     role="navigation"
     aria-label="pagination"
-    className={cn("mx-auto flex w-full justify-center", className)}
+    className={cn(
+      "mx-auto flex w-full justify-center text-gray-400",
+      className
+    )}
     {...props}
   />
 )
@@ -24,7 +27,7 @@ const PaginationContent = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <ul
     ref={ref}
-    className={cn("flex flex-row items-center gap-1", className)}
+    className={cn("flex flex-row items-center", className)}
     {...props}
   />
 ))
@@ -34,11 +37,7 @@ const PaginationItem = React.forwardRef<
   HTMLLIElement,
   React.ComponentProps<"li">
 >(({ className, ...props }, ref) => (
-  <li
-    ref={ref}
-    className={cn("bg-gray-800 text-gray-100", className)}
-    {...props}
-  />
+  <li ref={ref} className={cn("bg-gray-800", className)} {...props} />
 ))
 PaginationItem.displayName = "PaginationItem"
 
@@ -59,7 +58,9 @@ const PaginationLink = ({
       buttonVariants({
         variant: isActive ? "outline" : "ghost",
         size,
-        className: isActive && "text-black",
+        className: `border-transparent rounded-none ${
+          isActive && "text-white bg-gray-700"
+        }`,
       }),
       className
     )}
@@ -75,11 +76,10 @@ const PaginationPrevious = ({
   <PaginationLink
     aria-label="Go to previous page"
     size="default"
-    className={cn("gap-1 pl-2.5", className)}
+    className={cn("pl-2.5", className)}
     {...props}
   >
     <ChevronLeftIcon className="h-4 w-4" />
-    <span>Previous</span>
   </PaginationLink>
 )
 PaginationPrevious.displayName = "PaginationPrevious"
@@ -91,10 +91,9 @@ const PaginationNext = ({
   <PaginationLink
     aria-label="Go to next page"
     size="default"
-    className={cn("gap-1 pr-2.5", className)}
+    className={cn("pr-2.5", className)}
     {...props}
   >
-    <span>Next</span>
     <ChevronRightIcon className="h-4 w-4" />
   </PaginationLink>
 )

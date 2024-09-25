@@ -25,7 +25,7 @@ interface Props {
 
 const AgentCard = ({ id, name, description, rating, reviews, tags }: Props) => {
   return (
-    <Card key={id}>
+    <Card key={id} className="flex flex-col h-full">
       <CardHeader className="p-0 pb-6">
         <Image
           src="/place.svg"
@@ -35,7 +35,7 @@ const AgentCard = ({ id, name, description, rating, reviews, tags }: Props) => {
           className="rounded-t-lg"
         />
       </CardHeader>
-      <CardContent>
+      <CardContent className="flex-1">
         <div className="flex justify-between items-start mb-2">
           <CardTitle className="text-white">{name}</CardTitle>
           <Button
@@ -58,7 +58,7 @@ const AgentCard = ({ id, name, description, rating, reviews, tags }: Props) => {
           ))}
         </div>
       </CardContent>
-      <CardFooter>
+      <CardFooter className="mt-auto">
         <Button className="w-full">Subscribe</Button>
       </CardFooter>
     </Card>
