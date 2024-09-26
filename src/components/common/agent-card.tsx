@@ -30,7 +30,7 @@ const AgentCard = ({ id, name, description, rating, reviews, tags }: Props) => {
         <Image
           src="/place.svg"
           alt={name}
-          width={400}
+          width={500}
           height={200}
           className="rounded-t-lg"
         />

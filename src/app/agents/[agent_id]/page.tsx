@@ -3,7 +3,7 @@ import { Star } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+
 import {
   Pagination,
   PaginationContent,
@@ -12,6 +12,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination"
+import UserReviewCard from "@/components/common/user-review-card"
 
 const agentData = {
   name: "LinguAgent",
@@ -32,21 +33,17 @@ const agentData = {
 
 const reviews = [
   {
-    id: 1,
-    name: "Sarah123",
-    avatar: "/placeholder.svg?height=40&width=40",
-    date: "2 days ago",
+    username: "Sarah123",
+    timeAgo: "2 days ago",
     rating: 5,
-    comment:
+    content:
       "This AI agent has been a game-changer for my marketing team! Highly recommend it for automating repetitive tasks and data analysis.",
   },
   {
-    id: 2,
-    name: "JohnDoe",
-    avatar: "/placeholder.svg?height=40&width=40",
-    date: "1 week ago",
-    rating: 5,
-    comment:
+    username: "JohnDoe",
+    timeAgo: "1 week ago",
+    rating: 4,
+    content:
       "Impressive range of agents available on this platform. The subscription process was smooth and the results are fantastic!",
   },
 ]
@@ -160,53 +157,36 @@ export default function LinguAgentPage() {
           <CardHeader>
             <CardTitle>User Reviews</CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="space-y-4 mb-10">
-              {reviews.map((review) => (
-                <div
-                  key={review.id}
-                  className="border-b border-gray-700 pb-4 last:border-b-0 last:pb-0"
-                >
-                  <div className="flex items-center mb-2">
-                    <Avatar className="w-10 h-10 mr-3">
-                      <AvatarImage src={"/agent.png"} alt={review.name} />
-                      <AvatarFallback>{review.name.slice(0, 2)}</AvatarFallback>
-                    </Avatar>
-                    <div>
-                      <div className="font-semibold">{review.name}</div>
-                      <div className="text-sm text-gray-400">{review.date}</div>
-                    </div>
-                  </div>
-                  <div className="flex mb-2">
-                    <StarRating rating={review.rating} />
-                  </div>
-                  <p className="text-gray-300">{review.comment}</p>
-                </div>
+          <CardContent className="mb-4">
+            <div className="space-y-2 mb-4">
+              {reviews.map((review, index) => (
+                <UserReviewCard key={index} review={review} />
               ))}
             </div>
-            <Pagination>
-              <PaginationContent>
-                <PaginationItem className="rounded-tl-md rounded-bl-md">
-                  <PaginationPrevious href="#" />
-                </PaginationItem>
-                <PaginationItem className="border-r border-gray-700">
-                  <PaginationLink href="#" isActive>
-                    1
-                  </PaginationLink>
-                </PaginationItem>
-                <PaginationItem className="border-r border-gray-700">
-                  <PaginationLink href="#">2</PaginationLink>
-                </PaginationItem>
-                <PaginationItem className="border-r border-gray-700">
-                  <PaginationLink href="#">3</PaginationLink>
-                </PaginationItem>
-                <PaginationItem className="rounded-tr-md rounded-br-md">
-                  <PaginationNext href="#" />
-                </PaginationItem>
-              </PaginationContent>
-            </Pagination>
           </CardContent>
         </Card>
+
+        <Pagination className="mt-10">
+          <PaginationContent>
+            <PaginationItem className="rounded-tl-md rounded-bl-md">
+              <PaginationPrevious href="#" />
+            </PaginationItem>
+            <PaginationItem className="border-r border-gray-700">
+              <PaginationLink href="#" isActive>
+                1
+              </PaginationLink>
+            </PaginationItem>
+            <PaginationItem className="border-r border-gray-700">
+              <PaginationLink href="#">2</PaginationLink>
+            </PaginationItem>
+            <PaginationItem className="border-r border-gray-700">
+              <PaginationLink href="#">3</PaginationLink>
+            </PaginationItem>
+            <PaginationItem className="rounded-tr-md rounded-br-md">
+              <PaginationNext href="#" />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
       </main>
     </div>
   )

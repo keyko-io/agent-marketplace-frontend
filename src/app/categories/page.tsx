@@ -1,4 +1,4 @@
-import CategoryCard from "@/components/category-card"
+import CategoryCard from "@/components/common/category-card"
 
 const categories = [
   {

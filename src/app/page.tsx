@@ -2,18 +2,11 @@ import Image from "next/image"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Check, Zap, Sliders, ArrowRight } from "lucide-react"
-import CategoryCard from "@/components/category-card"
-import FeaturedAgentCard from "@/components/featured-agent-card"
-import Testimonials from "@/components/testimonials"
-import { Badge } from "@/components/ui/badge"
+import CategoryCard from "@/components/common/category-card"
+import FeaturedAgentCard from "@/components/common/featured-agent-card"
+import Testimonials from "@/components/common/testimonials"
 
 const categories = [
   {
@@ -109,6 +102,7 @@ export default function HomePage() {
               <div className="grid md:grid-cols-3 gap-8">
                 {categories.map((category) => (
                   <CategoryCard
+                    key={category.name}
                     name={category.name}
                     image={category.image}
                     category={category.category}
@@ -125,6 +119,7 @@ export default function HomePage() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {featuredAgents.map((agent) => (
                   <FeaturedAgentCard
+                    key={agent.name}
                     name={agent.name}
                     description={agent.description}
                   />

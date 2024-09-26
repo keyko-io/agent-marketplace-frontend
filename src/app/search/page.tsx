@@ -20,7 +20,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import AgentCard from "@/components/agent-card"
+import AgentCard from "@/components/common/agent-card"
 
 const agents = [
   {

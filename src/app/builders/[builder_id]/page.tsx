@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/pagination"
 
 import { Github, Linkedin, Twitter } from "lucide-react"
-import AgentCard from "@/components/agent-card"
+import AgentCard from "@/components/common/agent-card"
 
 const builderData = {
   name: "John Doe",
