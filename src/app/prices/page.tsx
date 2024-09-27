@@ -9,7 +9,7 @@ import {
 import { Button } from "@/components/ui/button"
 
 import { Check } from "lucide-react"
-import Testimonials from "@/components/testimonials"
+import Testimonials from "@/components/common/testimonials"
 
 const pricingPlans = [
   {

@@ -105,7 +105,7 @@ export default function DashboardPage() {
               {subscribedAgents.map((agent, index) => (
                 <div
                   key={index}
-                  className="flex items-center justify-between mb-4 last:mb-0 border-gray-500 border py-2 px-2"
+                  className="flex items-center justify-between mb-2 last:mb-0 border-gray-600 border py-2 px-2"
                 >
                   <div className="flex items-center">
                     <Image
@@ -143,12 +143,16 @@ export default function DashboardPage() {
             <CardContent className="flex flex-col">
               <ul className="space-y-4 flex-1">
                 {notifications.map((notification, index) => (
-                  <li key={index}>
+                  <li
+                    key={index}
+                    className="relative pl-4 before:content-['•'] before:absolute before:left-0 before:text-gray-400"
+                  >
                     <p className="text-gray-200">{notification.message}</p>
                     <p className="text-sm text-gray-400">{notification.time}</p>
                   </li>
                 ))}
               </ul>
+
               <Link
                 href="/notifications"
                 className="text-sm text-gray-200 hover:text-gray-100 block mt-8"
@@ -165,7 +169,12 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             {recentInteractions.map((interaction, index) => (
-              <div key={index} className="mb-2 last:mb-0 bg-gray-600 p-2 px-4">
+              <div
+                key={index}
+                className={`bg-gray-600 p-2 py-3 px-4 last:mb-0 ${
+                  index !== 0 ? "border-t border-gray-400" : ""
+                }`}
+              >
                 <p className="text-sm text-gray-400">{interaction.date}</p>
                 <p className="text-sm text-gray-400">
                   {interaction.description}
