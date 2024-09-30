@@ -109,7 +109,7 @@ export default function CreateAgentPage() {
                   <Input
                     id="agent-name"
                     placeholder="Your agent's name"
-                    className="bg-gray-700 border-gray-600 text-white"
+                    className=" border-gray-600 text-white"
                   />
                 </div>
                 <div>
@@ -120,7 +120,7 @@ export default function CreateAgentPage() {
                     Type
                   </Label>
                   <Select>
-                    <SelectTrigger className="bg-gray-700 border-gray-600 text-white">
+                    <SelectTrigger className=" border-gray-600 text-gray-500">
                       <SelectValue placeholder="Select type" />
                     </SelectTrigger>
                     <SelectContent>
@@ -138,7 +138,7 @@ export default function CreateAgentPage() {
                     Category
                   </Label>
                   <Select>
-                    <SelectTrigger className="bg-gray-700 border-gray-600 text-white">
+                    <SelectTrigger className=" border-gray-600 text-gray-500">
                       <SelectValue placeholder="Select category" />
                     </SelectTrigger>
                     <SelectContent>
@@ -158,7 +158,7 @@ export default function CreateAgentPage() {
                   <Input
                     id="agent-subtitle"
                     placeholder="A subtitle for your agent"
-                    className="bg-gray-700 border-gray-600 text-white"
+                    className=" border-gray-600 text-white"
                   />
                 </div>
               </div>
@@ -185,11 +185,9 @@ export default function CreateAgentPage() {
                     placeholder="Add a tag"
                     value={newTag}
                     onChange={(e) => setNewTag(e.target.value)}
-                    className="bg-gray-700 border-gray-600 text-white"
+                    className=" border-gray-600 text-white"
                   />
-                  <Button onClick={addTag} variant="outline">
-                    Add
-                  </Button>
+                  <Button onClick={addTag}>Add</Button>
                 </div>
               </div>
 
@@ -203,7 +201,7 @@ export default function CreateAgentPage() {
                 <Textarea
                   id="agent-description"
                   placeholder="Describe what your agent does"
-                  className="bg-gray-700 border-gray-600 text-white"
+                  className="border-gray-600 text-white"
                   rows={4}
                 />
               </div>
@@ -218,7 +216,7 @@ export default function CreateAgentPage() {
                 <Textarea
                   id="agent-features"
                   placeholder="Describe what features make your agent special"
-                  className="bg-gray-700 border-gray-600 text-white"
+                  className="border-gray-600 text-white"
                   rows={4}
                 />
               </div>
@@ -230,7 +228,7 @@ export default function CreateAgentPage() {
           <CardContent className="p-6">
             <Textarea
               placeholder="Describe what kind of input the process expects"
-              className="bg-gray-700 border-gray-600 text-white mb-4"
+              className=" border-gray-600 text-white mb-4"
               rows={2}
             />
             {inputs.map((input, index) => (
@@ -248,7 +246,7 @@ export default function CreateAgentPage() {
                         newInputs[index].name = e.target.value
                         setInputs(newInputs)
                       }}
-                      className="bg-gray-700 border-gray-600 text-white"
+                      className=" border-gray-600 text-white"
                     />
                   </div>
                   <div>
@@ -261,7 +259,7 @@ export default function CreateAgentPage() {
                         setInputs(newInputs)
                       }}
                     >
-                      <SelectTrigger className="bg-gray-700 border-gray-600 text-white">
+                      <SelectTrigger className=" border-gray-600 text-white">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
@@ -309,7 +307,7 @@ export default function CreateAgentPage() {
                       newInputs[index].description = e.target.value
                       setInputs(newInputs)
                     }}
-                    className="bg-gray-700 border-gray-600 text-white"
+                    className=" border-gray-600 text-white"
                   />
                 </div>
                 {input.type === "Dropdown" && (
@@ -322,14 +320,14 @@ export default function CreateAgentPage() {
                         newInputs[index].options = e.target.value
                         setInputs(newInputs)
                       }}
-                      className="bg-gray-700 border-gray-600 text-white"
+                      className=" border-gray-600 text-white"
                       rows={3}
                     />
                   </div>
                 )}
               </div>
             ))}
-            <Button onClick={addInput} variant="outline" className="mt-4">
+            <Button onClick={addInput} className="mt-4">
               <PlusCircle className="mr-2 h-4 w-4" />
               Add Input
             </Button>
@@ -343,7 +341,7 @@ export default function CreateAgentPage() {
               <Label className="text-gray-400">Description</Label>
               <Textarea
                 placeholder="Describe how your agent will use the inputs"
-                className="bg-gray-700 border-gray-600 text-white"
+                className=" border-gray-600 text-white"
                 rows={3}
               />
             </div>
@@ -351,7 +349,7 @@ export default function CreateAgentPage() {
               <div>
                 <Label className="text-gray-400">Runtime</Label>
                 <Select>
-                  <SelectTrigger className="bg-gray-700 border-gray-600 text-white">
+                  <SelectTrigger className=" border-gray-600 text-white">
                     <SelectValue placeholder="Select runtime" />
                   </SelectTrigger>
                   <SelectContent>
@@ -365,7 +363,7 @@ export default function CreateAgentPage() {
                 <Label className="text-gray-400">Entry point</Label>
                 <Input
                   placeholder="e.g., main.py"
-                  className="bg-gray-700 border-gray-600 text-white"
+                  className=" border-gray-600 text-white"
                 />
               </div>
             </div>
@@ -373,7 +371,7 @@ export default function CreateAgentPage() {
               <Label className="text-gray-400">Environment variables</Label>
               <Textarea
                 placeholder="KEY=value"
-                className="bg-gray-700 border-gray-600 text-white"
+                className=" border-gray-600 text-white"
                 rows={3}
               />
             </div>
@@ -381,7 +379,7 @@ export default function CreateAgentPage() {
               <Label className="text-gray-400">Dependencies</Label>
               <Textarea
                 placeholder="package==1.0.0"
-                className="bg-gray-700 border-gray-600 text-white"
+                className=" border-gray-600 text-white"
                 rows={3}
               />
             </div>
@@ -403,7 +401,7 @@ export default function CreateAgentPage() {
           <CardContent className="p-6">
             <Textarea
               placeholder="Describe what kind of output the process will generate"
-              className="bg-gray-700 border-gray-600 text-white mb-4"
+              className=" border-gray-600 text-white mb-4"
               rows={2}
             />
             {outputs.map((output, index) => (
@@ -421,7 +419,7 @@ export default function CreateAgentPage() {
                         newOutputs[index].name = e.target.value
                         setOutputs(newOutputs)
                       }}
-                      className="bg-gray-700 border-gray-600 text-white"
+                      className=" border-gray-600 text-white"
                     />
                   </div>
                   <div>
@@ -434,7 +432,7 @@ export default function CreateAgentPage() {
                         setOutputs(newOutputs)
                       }}
                     >
-                      <SelectTrigger className="bg-gray-700 border-gray-600 text-white">
+                      <SelectTrigger className=" border-gray-600 text-white">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
@@ -454,7 +452,7 @@ export default function CreateAgentPage() {
                       newOutputs[index].description = e.target.value
                       setOutputs(newOutputs)
                     }}
-                    className="bg-gray-700 border-gray-600 text-white"
+                    className="border-gray-600 text-white"
                   />
                 </div>
               </div>

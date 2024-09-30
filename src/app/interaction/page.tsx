@@ -149,7 +149,7 @@ export default function ImageMasterAIPage() {
               <Select onValueChange={setImageStyle}>
                 <SelectTrigger
                   id="image-style"
-                  className="bg-gray-700 border-gray-600 text-gray-200"
+                  className=" border-gray-600 text-gray-200"
                 >
                   <SelectValue placeholder="Select image style" />
                 </SelectTrigger>
@@ -172,7 +172,7 @@ export default function ImageMasterAIPage() {
                 placeholder="e.g., 512x512"
                 value={outputSize}
                 onChange={(e) => setOutputSize(e.target.value)}
-                className="bg-gray-700 border-gray-600 text-gray-200"
+                className=" border-gray-600 text-gray-200"
               />
             </div>
             <div>
@@ -187,7 +187,7 @@ export default function ImageMasterAIPage() {
                 placeholder="Describe the image you want to generate..."
                 value={imageDescription}
                 onChange={(e) => setImageDescription(e.target.value)}
-                className="bg-gray-700 border-gray-600 text-gray-200"
+                className=" border-gray-600 text-gray-200"
                 rows={4}
               />
             </div>
@@ -256,7 +256,7 @@ export default function ImageMasterAIPage() {
             <CardTitle className="text-white">Generation History</CardTitle>
             <Link
               href="#"
-              className="text-sm text-purple-400 hover:text-purple-300"
+              className="text-sm text-gray-200 hover:text-purple-300"
             >
               View all
             </Link>
@@ -286,30 +286,29 @@ export default function ImageMasterAIPage() {
               </div>
             ))}
           </CardContent>
-          <CardFooter className="mt-6">
-            <Pagination>
-              <PaginationContent>
-                <PaginationItem className="rounded-tl-md rounded-bl-md">
-                  <PaginationPrevious href="#" />
-                </PaginationItem>
-                <PaginationItem className="border-r border-gray-700">
-                  <PaginationLink href="#" isActive>
-                    1
-                  </PaginationLink>
-                </PaginationItem>
-                <PaginationItem className="border-r border-gray-700">
-                  <PaginationLink href="#">2</PaginationLink>
-                </PaginationItem>
-                <PaginationItem className="border-r border-gray-700">
-                  <PaginationLink href="#">3</PaginationLink>
-                </PaginationItem>
-                <PaginationItem className="rounded-tr-md rounded-br-md">
-                  <PaginationNext href="#" />
-                </PaginationItem>
-              </PaginationContent>
-            </Pagination>
-          </CardFooter>
+          <CardFooter className="mt-6"></CardFooter>
         </Card>
+        <Pagination className="mt-10">
+          <PaginationContent>
+            <PaginationItem className="rounded-tl-md rounded-bl-md">
+              <PaginationPrevious href="#" />
+            </PaginationItem>
+            <PaginationItem className="border-r border-gray-700">
+              <PaginationLink href="#" isActive>
+                1
+              </PaginationLink>
+            </PaginationItem>
+            <PaginationItem className="border-r border-gray-700">
+              <PaginationLink href="#">2</PaginationLink>
+            </PaginationItem>
+            <PaginationItem className="border-r border-gray-700">
+              <PaginationLink href="#">3</PaginationLink>
+            </PaginationItem>
+            <PaginationItem className="rounded-tr-md rounded-br-md">
+              <PaginationNext href="#" />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
       </main>
     </div>
   )

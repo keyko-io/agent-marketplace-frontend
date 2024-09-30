@@ -210,11 +210,11 @@ export default function DashboardPage() {
         </div>
 
         <Table className="mb-8">
-          <TableHeader className="bg-gray-700">
+          <TableHeader>
             <TableRow>
-              <TableHead className="text-gray-200">Date</TableHead>
-              <TableHead className="text-gray-200">Action</TableHead>
-              <TableHead className="text-gray-200">Details</TableHead>
+              <TableHead>Date</TableHead>
+              <TableHead>Action</TableHead>
+              <TableHead>Details</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
