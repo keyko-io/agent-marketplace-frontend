@@ -2,8 +2,12 @@
 
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { useUser } from "@/app/context/userContext"
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 
 export function HeaderComponent() {
+  const { user } = useUser()
+
   return (
     <header className="bg-gray-800 shadow-md">
       <nav className="max-w-7xl mx-auto sm:px-6 lg:px-8 py-4 flex justify-between items-center">
@@ -29,9 +33,16 @@ export function HeaderComponent() {
             </Link>
           </div>
 
-          <Button className="rounded-3xl">
-            <span className="mr-4 font-semibold">+</span> Sign Up
-          </Button>
+          {user ? (
+            <Avatar className="w-8 h-8">
+              <AvatarImage src={user?.imageUrl || ""} alt="Profile picture" />
+              <AvatarFallback>{user?.username?.[0]}</AvatarFallback>
+            </Avatar>
+          ) : (
+            <Button className="rounded-3xl">
+              <span className="mr-4 font-semibold">+</span> Sign Up
+            </Button>
+          )}
         </div>
       </nav>
     </header>

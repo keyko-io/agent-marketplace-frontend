@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image"
 import Link from "next/link"
 import {
@@ -9,8 +10,9 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination"
 
-import { Github, Linkedin, Twitter } from "lucide-react"
+import { Github, Linkedin, Star, Twitter } from "lucide-react"
 import AgentCard from "@/components/common/agent-card"
+import { useQuery } from "@tanstack/react-query"
 
 const builderData = {
   name: "John Doe",
@@ -25,72 +27,38 @@ const builderData = {
   ],
 }
 
-const agents = [
-  {
-    id: 1,
-    name: "Data Analyzer Pro",
-    description: "Powerful data analysis tool for complex datasets",
-    rating: 4.8,
-    reviews: 120,
-    tags: ["dataanalysis", "ai", "productivity"],
-  },
-  {
-    id: 2,
-    name: "Content Creator AI",
-    description: "Generate engaging content for various platforms",
-    rating: 4.6,
-    reviews: 85,
-    tags: ["contentcreation", "ai", "writing"],
-  },
-  {
-    id: 3,
-    name: "Task Automator",
-    description: "Streamline your workflow with intelligent automation",
-    rating: 4.7,
-    reviews: 150,
-    tags: ["contentcreation", "ai", "writing"],
-  },
-  {
-    id: 4,
-    name: "Data Analyzer Pro",
-    description: "Powerful data analysis tool for complex datasets",
-    rating: 4.8,
-    reviews: 120,
-    tags: ["dataanalysis", "ai", "productivity"],
-  },
-  {
-    id: 5,
-    name: "Content Creator AI",
-    description: "Generate engaging content for various platforms",
-    rating: 4.6,
-    reviews: 85,
-    tags: ["contentcreation", "ai", "writing"],
-  },
-  {
-    id: 6,
-    name: "Task Automator",
-    description: "Streamline your workflow with intelligent automation",
-    rating: 4.7,
-    reviews: 150,
-    tags: ["contentcreation", "ai", "writing"],
-  },
-]
+const fetchBuilderDetails = async () => {
+  const response = await fetch(
+    "http://localhost:8001/users/creator/14824b34-a311-4de9-9897-0be5f3cf4c9d"
+  )
+  if (!response.ok) {
+    throw new Error("Network response was not ok")
+  }
+  return response.json()
+}
 
 export default function BuilderPage() {
+  const { data: builderDetail } = useQuery({
+    queryKey: ["buiLderDetail"],
+    queryFn: fetchBuilderDetails,
+  })
+
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       <main className="container mx-auto px-4 py-8">
         <div className="bg-gray-800 rounded-lg p-6 mb-8">
           <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
             <Image
-              src={"/agent.png"}
-              alt={builderData.name}
+              src={builderDetail?.creator?.imageUrl}
+              alt={"buidlder image"}
               width={140}
               height={140}
               className="rounded-full border-4 border-purple-600"
             />
             <div className="flex-grow text-center md:text-left">
-              <h1 className="text-3xl font-bold mb-2">{builderData.name}</h1>
+              <h1 className="text-3xl font-bold mb-2">
+                {builderDetail?.creator.name}
+              </h1>
               <p className="text-gray-400 mb-2">{builderData.title}</p>
               <p className="text-gray-400 mb-4">{builderData.stats}</p>
               <p className="text-gray-300 mb-4">{builderData.bio}</p>
@@ -117,7 +85,7 @@ export default function BuilderPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          {agents.map((agent) => (
+          {builderDetail?.agents.map((agent: any) => (
             <AgentCard {...agent} key={agent.id} />
           ))}
         </div>

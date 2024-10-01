@@ -1,17 +1,34 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Label } from "@/components/ui/label"
+import { useUser } from "../context/userContext"
 
 export default function SettingsPage() {
+  const { user } = useUser()
+
+  const [name, setName] = useState("")
+
+  const [username, setUsername] = useState("")
+
+  const [description, setDescription] = useState("")
+
   const [profileImage, setProfileImage] = useState(
     "/placeholder.svg?height=100&width=100"
   )
+
+  useEffect(() => {
+    if (user) {
+      setName(user.name || "")
+      setUsername(user.username || "")
+      setDescription(user.description || "")
+    }
+  }, [user])
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -46,8 +63,8 @@ export default function SettingsPage() {
                     </h3>
                     <div className="flex items-center space-x-4 mb-4">
                       <Avatar className="w-24 h-24">
-                        <AvatarImage src={"/agent.png"} alt="Profile picture" />
-                        <AvatarFallback>CN</AvatarFallback>
+                        <AvatarImage src={profileImage} alt="Profile picture" />
+                        <AvatarFallback>{username?.[0]}</AvatarFallback>
                       </Avatar>
                       <div>
                         <Button
@@ -78,7 +95,9 @@ export default function SettingsPage() {
                         <Input
                           id="name"
                           placeholder="Your Name"
-                          className=" border-gray-600 text-gray-200 placeholder-gray-500"
+                          className="border-gray-600 text-gray-200 placeholder-gray-500"
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
                         />
                       </div>
                       <div>
@@ -88,7 +107,9 @@ export default function SettingsPage() {
                         <Input
                           id="username"
                           placeholder="Your platform username"
-                          className=" border-gray-600 text-gray-200 placeholder-gray-500"
+                          className="border-gray-600 text-gray-200 placeholder-gray-500"
+                          value={username}
+                          onChange={(e) => setUsername(e.target.value)}
                         />
                       </div>
                     </div>
@@ -100,7 +121,7 @@ export default function SettingsPage() {
                     <Input
                       id="title"
                       placeholder="Your role, e.g. AI Agent Designer and Software Architect"
-                      className=" border-gray-600 text-gray-200 placeholder-gray-500"
+                      className="border-gray-600 text-gray-200 placeholder-gray-500"
                     />
                   </div>
                   <div>
@@ -112,6 +133,8 @@ export default function SettingsPage() {
                       placeholder="Tell us a little more about you"
                       className="border-gray-600 text-gray-200 placeholder-gray-500"
                       rows={4}
+                      value={description}
+                      onChange={(e) => setDescription(e.target.value)}
                     />
                   </div>
                   <div>
@@ -165,7 +188,8 @@ export default function SettingsPage() {
                 </div>
               </CardContent>
             </Card>
-            <Card className=" border-gray-700">
+            {/* Password Section */}
+            <Card className="border-gray-700">
               <CardHeader>
                 <CardTitle className="text-gray-100">Edit Password</CardTitle>
               </CardHeader>
@@ -179,7 +203,7 @@ export default function SettingsPage() {
                       id="current-password"
                       type="password"
                       placeholder="Your current password"
-                      className=" border-gray-600 text-gray-200 placeholder-gray-500"
+                      className="border-gray-600 text-gray-200 placeholder-gray-500"
                     />
                   </div>
                   <div>
@@ -190,7 +214,7 @@ export default function SettingsPage() {
                       id="new-password"
                       type="password"
                       placeholder="Your new password"
-                      className=" border-gray-600 text-gray-200 placeholder-gray-500"
+                      className="border-gray-600 text-gray-200 placeholder-gray-500"
                     />
                   </div>
                   <div>
@@ -201,7 +225,7 @@ export default function SettingsPage() {
                       id="confirm-password"
                       type="password"
                       placeholder="Confirm your new password"
-                      className=" border-gray-600 text-gray-200 placeholder-gray-500"
+                      className="border-gray-600 text-gray-200 placeholder-gray-500"
                     />
                   </div>
                   <Button>Update Password</Button>
@@ -209,38 +233,19 @@ export default function SettingsPage() {
               </CardContent>
             </Card>
           </div>
+          {/* Settings Menu */}
           <div>
             <Card className="border-gray-700">
               <CardHeader>
                 <CardTitle className="text-gray-100">Settings</CardTitle>
               </CardHeader>
               <CardContent>
-                <nav className="space-y-2">
-                  <Button
-                    variant="ghost"
-                    className="w-full justify-start text-gray-200 hover:bg-[#2c2f3e] hover:text-gray-100"
-                  >
-                    Account Settings
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    className="w-full justify-start text-gray-200 hover:bg-[#2c2f3e] hover:text-gray-100"
-                  >
-                    Notification Preferences
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    className="w-full justify-start text-gray-200 hover:bg-[#2c2f3e] hover:text-gray-100"
-                  >
-                    Billing Information
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    className="w-full justify-start text-gray-200 hover:bg-[#2c2f3e] hover:text-gray-100"
-                  >
-                    Security & Privacy
-                  </Button>
-                </nav>
+                <ul className="text-gray-200 space-y-4">
+                  <li>Account Details</li>
+                  <li>Security</li>
+                  <li>Notifications</li>
+                  <li>Privacy</li>
+                </ul>
               </CardContent>
             </Card>
           </div>

@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image"
 
 import { Button } from "@/components/ui/button"
@@ -7,36 +8,7 @@ import { Check, Zap, Sliders, ArrowRight } from "lucide-react"
 import CategoryCard from "@/components/common/category-card"
 import FeaturedAgentCard from "@/components/common/featured-agent-card"
 import Testimonials from "@/components/common/testimonials"
-
-const categories = [
-  {
-    name: "Creative Assistant",
-    image: "/placeholder.svg?height=400&width=400",
-    category: "AI Solutions",
-  },
-  {
-    name: "Data Analyzer",
-    image: "/placeholder.svg?height=400&width=400",
-    category: "Data Analytics",
-  },
-  {
-    name: "Productivity",
-    image: "/placeholder.svg?height=400&width=400",
-    category: "Data Analytics",
-  },
-]
-
-const featuredAgents = [
-  {
-    name: "AssistAI",
-    description: "Your personal AI assistant for daily tasks",
-  },
-  { name: "DataMind", description: "Advanced data analysis and visualization" },
-  {
-    name: "ContentPro",
-    description: "AI-powered content creation and optimization",
-  },
-]
+import { useQuery } from "@tanstack/react-query"
 
 const features = [
   {
@@ -56,7 +28,33 @@ const features = [
   },
 ]
 
+const fetchFeaturedCategories = async () => {
+  const response = await fetch("http://localhost:8001/categories?featured=true")
+  if (!response.ok) {
+    throw new Error("Network response was not ok")
+  }
+  return response.json()
+}
+
+const fetchFeaturedAgents = async () => {
+  const response = await fetch("http://localhost:8001/agents?featured=true")
+  if (!response.ok) {
+    throw new Error("Network response was not ok")
+  }
+  return response.json()
+}
+
 export default function HomePage() {
+  const { data: categories } = useQuery({
+    queryKey: ["featuredCategories"],
+    queryFn: fetchFeaturedCategories,
+  })
+
+  const { data: featuredAgents } = useQuery({
+    queryKey: ["featuredAgents"],
+    queryFn: fetchFeaturedAgents,
+  })
+
   return (
     <div className="flex flex-col min-h-screen  text-white">
       <main className="flex-grow">
@@ -100,12 +98,11 @@ export default function HomePage() {
             <div className="max-w-7xl mx-auto py-8">
               <h2 className="text-3xl font-bold mb-8">Explore Categories</h2>
               <div className="grid md:grid-cols-3 gap-8">
-                {categories.map((category) => (
+                {categories?.slice(0, 3).map((category: any) => (
                   <CategoryCard
                     key={category.name}
                     name={category.name}
-                    image={category.image}
-                    category={category.category}
+                    image={category.imageUrl}
                   />
                 ))}
               </div>
@@ -117,10 +114,10 @@ export default function HomePage() {
             <div className="max-w-7xl mx-auto">
               <h2 className="text-3xl font-bold mb-8">Featured Agents</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {featuredAgents.map((agent) => (
+                {featuredAgents?.agents?.slice(0, 3).map((agent: any) => (
                   <FeaturedAgentCard
                     key={agent.name}
-                    name={agent.name}
+                    name={agent.title}
                     description={agent.description}
                   />
                 ))}

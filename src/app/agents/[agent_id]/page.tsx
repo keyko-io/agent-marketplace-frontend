@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image"
 import { Star } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -13,40 +14,8 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination"
 import UserReviewCard from "@/components/common/user-review-card"
-
-const agentData = {
-  name: "LinguAgent",
-  rating: 5,
-  reviewCount: 2,
-  category: "AI Marketplace",
-  tags: ["Productivity", "AI", "Translation"],
-  description:
-    "AgentMarketplace.ai is a cutting-edge online platform that streamlines access to a diverse array of intelligent agents designed to automate tasks, enhance productivity, and deliver advanced analytics. This user-friendly marketplace empowers professionals from various industries to discover and subscribe to AI solutions that align with their needs—from creative assistants to data analyzers.",
-  keyFeatures: [
-    "Wide range of AI agents for various tasks",
-    "User-friendly interface for easy agent discovery",
-    "Detailed agent profiles with capabilities and use cases",
-    "Flexible subscription options",
-    "Integration support for seamless workflow incorporation",
-  ],
-}
-
-const reviews = [
-  {
-    username: "Sarah123",
-    timeAgo: "2 days ago",
-    rating: 5,
-    content:
-      "This AI agent has been a game-changer for my marketing team! Highly recommend it for automating repetitive tasks and data analysis.",
-  },
-  {
-    username: "JohnDoe",
-    timeAgo: "1 week ago",
-    rating: 4,
-    content:
-      "Impressive range of agents available on this platform. The subscription process was smooth and the results are fantastic!",
-  },
-]
+import { useQuery } from "@tanstack/react-query"
+import { useState } from "react"
 
 const StarRating = ({ rating }: { rating: number }) => (
   <div className="flex">
@@ -54,14 +23,57 @@ const StarRating = ({ rating }: { rating: number }) => (
       <Star
         key={star}
         className={`h-5 w-5 ${
-          star <= rating ? "text-yellow-400 fill-current" : "text-gray-400"
+          star <= rating ? "text-primary fill-current" : "text-gray-400"
         }`}
       />
     ))}
   </div>
 )
 
+const fetchAgentDetails = async () => {
+  const response = await fetch(
+    "http://localhost:8001/agents/details/0037bd57-139e-4b00-aa4d-1ff64ab0ba3f"
+  )
+  if (!response.ok) {
+    throw new Error("Network response was not ok")
+  }
+  return response.json()
+}
+
 export default function LinguAgentPage() {
+  const { data: agentDetail } = useQuery({
+    queryKey: ["agentDetail"],
+    queryFn: fetchAgentDetails,
+  })
+
+  const [currentPage, setCurrentPage] = useState(1)
+
+  const itemsPerPage = 2 // Set the number of items to display per page
+
+  // Calculate the total number of pages
+  const totalPages = Math.ceil(
+    agentDetail?.agent?.reviews.length / itemsPerPage
+  )
+
+  // Get the current reviews to display based on the current page
+  const startIndex = (currentPage - 1) * itemsPerPage
+  const currentReviews = agentDetail?.agent?.reviews.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  )
+
+  const handleNext = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage((prev) => prev + 1)
+    }
+  }
+
+  const handlePrevious = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prev) => prev - 1)
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       <main className="container mx-auto px-4 py-8">
@@ -70,7 +82,7 @@ export default function LinguAgentPage() {
             <div className="flex flex-col md:flex-row gap-6">
               <div className="md:w-1/3">
                 <Image
-                  src="/agent.png"
+                  src={agentDetail?.agent?.imageUrl}
                   alt="LinguAgent"
                   width={300}
                   height={400}
@@ -78,16 +90,18 @@ export default function LinguAgentPage() {
                 />
               </div>
               <div className="md:w-2/3">
-                <h1 className="text-3xl font-bold mb-2">{agentData.name}</h1>
+                <h1 className="text-3xl font-bold mb-2">
+                  {agentDetail?.agent?.title}
+                </h1>
                 <div className="flex items-center mb-2">
-                  <StarRating rating={agentData.rating} />
+                  <StarRating rating={agentDetail?.agent?.avgRating} />
                   <span className="ml-2 text-sm text-primary">
-                    {agentData.reviewCount} reviews
+                    {agentDetail?.agent?.reviewCount} reviews
                   </span>
 
                   <div className="ml-auto">
                     <div className="mb-1">Tags:</div>
-                    {agentData.tags.map((tag) => (
+                    {agentDetail?.agent?.tags.map((tag: any) => (
                       <Badge key={tag} className="mr-2">
                         #{tag}
                       </Badge>
@@ -95,14 +109,16 @@ export default function LinguAgentPage() {
                   </div>
                 </div>
                 <div className="mb-4">
-                  <Badge className="mr-2">{agentData.category}</Badge>
+                  <Badge className="mr-2">
+                    {agentDetail?.agent?.category?.name}
+                  </Badge>
                 </div>
-                <p className="mb-4 text-gray-300">{agentData.description}</p>
+                <p className="mb-4 text-gray-300">
+                  {agentDetail?.agent?.description}
+                </p>
                 <h2 className="text-xl font-semibold mb-2">Key Features:</h2>
                 <ul className="list-disc list-inside mb-4 text-gray-300">
-                  {agentData.keyFeatures.map((feature, index) => (
-                    <li key={index}>{feature}</li>
-                  ))}
+                  {agentDetail?.agent?.keyFeatures}
                 </ul>
                 <Button className="w-full">Subscribe Now</Button>
               </div>
@@ -159,8 +175,8 @@ export default function LinguAgentPage() {
           </CardHeader>
           <CardContent className="mb-4">
             <div className="space-y-2 mb-4">
-              {reviews.map((review, index) => (
-                <UserReviewCard key={index} review={review} />
+              {currentReviews.map((review: any) => (
+                <UserReviewCard key={review.id} review={review} />
               ))}
             </div>
           </CardContent>
@@ -169,21 +185,20 @@ export default function LinguAgentPage() {
         <Pagination className="mt-10">
           <PaginationContent>
             <PaginationItem className="rounded-tl-md rounded-bl-md">
-              <PaginationPrevious href="#" />
+              <PaginationPrevious onClick={handlePrevious} />
             </PaginationItem>
-            <PaginationItem className="border-r border-gray-700">
-              <PaginationLink href="#" isActive>
-                1
-              </PaginationLink>
-            </PaginationItem>
-            <PaginationItem className="border-r border-gray-700">
-              <PaginationLink href="#">2</PaginationLink>
-            </PaginationItem>
-            <PaginationItem className="border-r border-gray-700">
-              <PaginationLink href="#">3</PaginationLink>
-            </PaginationItem>
+            {[...Array(totalPages)].map((_, index) => (
+              <PaginationItem key={index} className="border-r border-gray-700">
+                <PaginationLink
+                  isActive={currentPage === index + 1}
+                  onClick={() => setCurrentPage(index + 1)}
+                >
+                  {index + 1}
+                </PaginationLink>
+              </PaginationItem>
+            ))}
             <PaginationItem className="rounded-tr-md rounded-br-md">
-              <PaginationNext href="#" />
+              <PaginationNext onClick={handleNext} />
             </PaginationItem>
           </PaginationContent>
         </Pagination>

@@ -3,10 +3,10 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Star } from "lucide-react"
 
 interface Review {
-  username: string
+  reviewerName: string
   timeAgo: string
   rating: number
-  content: string
+  comment: string
 }
 
 const UserReviewCard = ({ review }: { review: Review }) => (
@@ -16,12 +16,12 @@ const UserReviewCard = ({ review }: { review: Review }) => (
         <Avatar className="h-10 w-10 mr-4">
           <AvatarImage
             src="/placeholder.svg?height=40&width=40"
-            alt={review.username}
+            alt={review.reviewerName}
           />
-          <AvatarFallback>{review.username[0]}</AvatarFallback>
+          <AvatarFallback>{review.reviewerName[0]}</AvatarFallback>
         </Avatar>
         <div>
-          <div className="font-semibold text-white">{review.username}</div>
+          <div className="font-semibold text-white">{review.reviewerName}</div>
           <div className="text-sm text-gray-400">{review.timeAgo}</div>
         </div>
       </div>
@@ -37,7 +37,7 @@ const UserReviewCard = ({ review }: { review: Review }) => (
           />
         ))}
       </div>
-      <p className="text-gray-300">{review.content}</p>
+      <p className="text-gray-300">{review.comment}</p>
     </CardContent>
   </Card>
 )

@@ -4,19 +4,18 @@ import Image from "next/image"
 interface Props {
   name: string
   image: string
-  category: string
 }
 
-const CategoryCard = ({ name, category }: Props) => {
+const CategoryCard = ({ name, image }: Props) => {
   return (
     <Card key={name}>
       <CardHeader className="text-white">
-        <p className="text-sm">{category}</p>
+        {/* <p className="text-sm">{category}</p> */}
         <CardTitle className="text-lg">{name}</CardTitle>
       </CardHeader>
       <CardContent>
         <Image
-          src={"/category.png"}
+          src={image}
           alt={name}
           width={400}
           height={400}
