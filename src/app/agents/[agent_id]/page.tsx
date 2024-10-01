@@ -175,7 +175,7 @@ export default function LinguAgentPage() {
           </CardHeader>
           <CardContent className="mb-4">
             <div className="space-y-2 mb-4">
-              {currentReviews.map((review: any) => (
+              {currentReviews?.map((review: any) => (
                 <UserReviewCard key={review.id} review={review} />
               ))}
             </div>
@@ -187,16 +187,20 @@ export default function LinguAgentPage() {
             <PaginationItem className="rounded-tl-md rounded-bl-md">
               <PaginationPrevious onClick={handlePrevious} />
             </PaginationItem>
-            {[...Array(totalPages)].map((_, index) => (
-              <PaginationItem key={index} className="border-r border-gray-700">
-                <PaginationLink
-                  isActive={currentPage === index + 1}
-                  onClick={() => setCurrentPage(index + 1)}
+            {totalPages &&
+              [...Array(totalPages)].map((_, index) => (
+                <PaginationItem
+                  key={index}
+                  className="border-r border-gray-700"
                 >
-                  {index + 1}
-                </PaginationLink>
-              </PaginationItem>
-            ))}
+                  <PaginationLink
+                    isActive={currentPage === index + 1}
+                    onClick={() => setCurrentPage(index + 1)}
+                  >
+                    {index + 1}
+                  </PaginationLink>
+                </PaginationItem>
+              ))}
             <PaginationItem className="rounded-tr-md rounded-br-md">
               <PaginationNext onClick={handleNext} />
             </PaginationItem>
